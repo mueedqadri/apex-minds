@@ -27,6 +27,21 @@ export type Post = {
   content?: string;
 };
 
+export interface IItem {
+  name: string;
+  icon: string;
+  text: string;
+  number: string;
+  postSymbol: string;
+  preSymbol: string;
+}
+
+export interface ICompanies {
+  title: string;
+  subtitle: string;
+  logos: string[];
+}
+
 export type Author = {
   frontmatter: {
     title: string;

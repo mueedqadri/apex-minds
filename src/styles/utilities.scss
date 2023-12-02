@@ -1,6 +1,10 @@
 .bg-gradient {
   @apply bg-gradient-to-b from-[rgba(249,249,249,1)] from-[0.53%] to-white to-[83.28%] dark:from-darkmode-theme-light dark:to-darkmode-body;
 }
+.bg-gradient-company {
+  /* Radial gradient with a light center and fading towards the edges */
+  background-image: radial-gradient(circle, rgba(249,249,249,1) 30%, white 70%);
+}
 
 .rounded-sm {
   @apply rounded-[4px];

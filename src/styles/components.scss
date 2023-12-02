@@ -26,12 +26,27 @@
   li {
     @apply inline-block;
     a {
-      @apply flex h-9 w-9 items-center justify-center rounded bg-primary text-center leading-9 text-white dark:bg-darkmode-primary dark:text-dark;
+      @apply flex h-9 w-9 items-center justify-center rounded bg-primary text-center leading-9 text-white dark:bg-darkmode-primary ;
       svg {
         @apply h-5 w-5;
       }
     }
   }
+}
+
+.dev-icons{
+  
+}
+
+.number-icons {
+    @apply inline-block;
+    a {
+      @apply flex h-14 w-14 mr-3 items-center justify-center rounded-full bg-primary text-center leading-9 text-white dark:bg-darkmode-primary ;
+      svg {
+        @apply h-7 w-7;
+      }
+    }
+  
 }
 
 // notice

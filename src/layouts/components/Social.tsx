@@ -1,4 +1,5 @@
 import DynamicIcon from "@/helpers/DynamicIcon";
+import WordChips from "@/partials/WordChips";
 
 export interface ISocial {
   name: string;

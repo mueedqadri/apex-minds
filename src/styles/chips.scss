@@ -1,14 +1,16 @@
 
+
 .word-chips {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: center; 
   
     .chip {
       padding: 10px;
       background-color: #ddd;
       border-radius: 25px;
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
   
       &:hover {
         @apply bg-primary text-white;
@@ -26,4 +28,4 @@
             }
         }
     }
-  }
+}

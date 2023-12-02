@@ -14,11 +14,11 @@ interface PageData {
     enable?: boolean;
     title: string;
     description?: string;
-    testimonials: Array<Testimonial>;
+    Developers: Array<Testimonial>;
   };
 }
 
-const Testimonials = ({ data }: { data: PageData }) => {
+const Developers = ({ data }: { data: PageData }) => {
   return (
     <>
       {data.frontmatter.enable && (
@@ -40,8 +40,9 @@ const Testimonials = ({ data }: { data: PageData }) => {
                 <Swiper
                   modules={[Autoplay, Pagination]}
                   pagination={{ clickable: true }}
+                  slidesPerView={"auto"}
                   loop={true}
-                  centeredSlides={true}
+                  centeredSlides={false}
                   autoplay={{
                     delay: 2500,
                     disableOnInteraction: false,
@@ -56,7 +57,7 @@ const Testimonials = ({ data }: { data: PageData }) => {
                     },
                   }}
                 >
-                  {data.frontmatter.testimonials.map(
+                  {data.frontmatter.Developers.map(
                     (item: Testimonial, index: number) => (
                       <SwiperSlide key={index}>
                         <div className="rounded-lg bg-theme-light px-7 py-10 dark:bg-darkmode-theme-light">
@@ -117,4 +118,4 @@ const Testimonials = ({ data }: { data: PageData }) => {
   );
 };
 
-export default Testimonials;
+export default Developers;
