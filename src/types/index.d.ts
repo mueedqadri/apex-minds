@@ -27,6 +27,8 @@ export type Post = {
   content?: string;
 };
 
+export type SectionName = (typeof links)[number]["name"];
+
 export interface IItem {
   name: string;
   icon: string;
@@ -60,7 +62,7 @@ export type Author = {
   slug?: string;
 };
 
-export type Feature = {
+export type IFeature = {
   button: button;
   image: string;
   bulletpoints: string[];

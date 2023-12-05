@@ -9,7 +9,6 @@ interface LogoSwiperProps {
   companies: ICompanies;
 }
 
-// The LogoSwiper component
 const LogoSwiper: React.FC<LogoSwiperProps> = ({ companies }) => {
   return (
     <section className="section ">
