@@ -70,11 +70,31 @@ export type IFeature = {
   title: string;
 };
 
+export type ISkills = {
+  list: ISkillList[];
+  content: string;
+  title: string;
+};
+
+type ISkillList = {
+  name: string;
+  icon: string;
+  color: string;
+  mode: string;
+};
+
 export type Testimonial = {
   name: string;
   designation: string;
   avatar: string;
-  content: string;
+  content: string[];
+  social: ISocial[];
+};
+
+type ISocial = {
+  name: string;
+  icon: string;
+  link: string;
 };
 
 export type Call_to_action = {

@@ -1,28 +1,38 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { useSpring, animated } from 'react-spring';
-import { useInView } from 'react-intersection-observer';
+import React, { useState, useEffect } from "react";
+import { useSpring, animated } from "react-spring";
+import { useInView } from "react-intersection-observer";
 
-const AnimatedNumber = ({ number, preSymbol, postSymbol }) => {
+interface AnimatedNumberProps {
+  number: number;
+  preSymbol: string;
+  postSymbol: string;
+}
+
+const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
+  number,
+  preSymbol,
+  postSymbol,
+}) => {
   const [ref, inView] = useInView({
-    triggerOnce: false, 
+    triggerOnce: true,
   });
 
   const [targetNumber, setTargetNumber] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true); 
+    setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    let timeoutId;
+    let timeoutId: NodeJS.Timeout;
     if (inView && isMounted) {
       timeoutId = setTimeout(() => {
         setTargetNumber(number);
-      }, 400); 
+      }, 400);
     } else {
-      setTargetNumber(0); 
+      setTargetNumber(0);
     }
 
     return () => clearTimeout(timeoutId);
@@ -35,12 +45,12 @@ const AnimatedNumber = ({ number, preSymbol, postSymbol }) => {
   });
 
   if (!isMounted) {
-    return null; 
+    return null;
   }
 
   return (
     <animated.div ref={ref}>
-      {props.val.interpolate(val => preSymbol+ Math.floor(val) + postSymbol)}
+      {props.val.interpolate((val) => preSymbol + Math.floor(val) + postSymbol)}
     </animated.div>
   );
 };

@@ -26,7 +26,7 @@ const NumberElements: React.FC<NumberElementsProps> = ({ numbers }) => {
                   </a>
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-2xl text-black-600 font-bold mt-3">
+                  <p className="text-3xl text-black-600 font-bold mt-3">
                     <AnimatedNumber
                       number={parseInt(item.number, 10)}
                       preSymbol={item.preSymbol}

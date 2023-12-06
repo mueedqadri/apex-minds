@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { useSectionInView } from "../../hooks/useSectionInView";
 import { motion } from "framer-motion";
-import { IFeature } from "@/types";
+import { ISkills } from "@/types";
 import { markdownify } from "@/lib/utils/textConverter";
+import DynamicIcon from "@/helpers/DynamicIcon";
 
 const fadeInAnimationVariants = {
   initial: {
@@ -21,42 +21,40 @@ const fadeInAnimationVariants = {
 };
 
 interface FeatureProps {
-  skills: IFeature;
+  skills: ISkills;
 }
 
 const Skills: React.FC<FeatureProps> = ({ skills }) => {
-  const { ref } = useSectionInView("Skills");
-
   return (
-    <section
-      id="skills"
-      ref={ref}
-      className="mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40"
-    >
-      <div className="mx-auto mb-12 text-center md:col-12 lg:col-12 xl:col-12">
-        <h2 dangerouslySetInnerHTML={markdownify(skills.title)} />
-        <p
-          className="mb-8 text-lg"
-          dangerouslySetInnerHTML={markdownify(skills.content)}
-        />
+    <section id="skills" className="section">
+      <div className="container">
+        <div className="row">
+          <div className="mx-auto mb-8 text-center md:col-12 lg:col-12 xl:col-12">
+            <h2 dangerouslySetInnerHTML={markdownify(skills.title)} />
+          </div>
+          <ul className="flex flex-wrap justify-center gap-5 text-lg text-gray-800">
+            {skills.list.map((skill, index) => (
+              <motion.li
+                style={{ backgroundColor: `#${skill.color}` }}
+                className={`flex flex-col items-center justify-center border rounded-xl px-6 py-2  ${
+                  skill.mode == "dark" ? "text-white" : "text-black/80"
+                } `}
+                key={index}
+                variants={fadeInAnimationVariants}
+                initial="initial"
+                whileInView="animate"
+                viewport={{
+                  once: true,
+                }}
+                custom={index}
+              >
+                <DynamicIcon className="text-4xl m-1" icon={skill.icon} />
+                <span className="text-sm">{skill.name}</span>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
-        {skills.bulletpoints.map((skill, index) => (
-          <motion.li
-            className="bg-white borderBlack rounded-xl px-5 py-3 dark:bg-white/10 dark:text-white/80"
-            key={index}
-            variants={fadeInAnimationVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{
-              once: true,
-            }}
-            custom={index}
-          >
-            {skill}
-          </motion.li>
-        ))}
-      </ul>
     </section>
   );
 };
