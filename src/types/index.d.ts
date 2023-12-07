@@ -101,8 +101,6 @@ export type Call_to_action = {
   enable?: boolean;
   title: string;
   description: string;
-  image: string;
-  button: Button;
 };
 
 export type Button = {

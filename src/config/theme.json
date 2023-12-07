@@ -18,9 +18,9 @@
       "theme_color": {
         "primary": "#4d28e1",
         "body": "#1c1c1c",
-        "border": "red",
+        "border": "dark-grey",
         "theme_light": "#222222",
-        "theme_dark": ""
+        "theme_dark": "#333333"
       },
       "text_color": {
         "default": "#B4AFB6",

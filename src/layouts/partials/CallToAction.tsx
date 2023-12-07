@@ -1,6 +1,8 @@
+import ContactForm from "@/components/ContactForm";
 import ImageFallback from "@/helpers/ImageFallback";
 import { markdownify } from "@/lib/utils/textConverter";
 import { Call_to_action } from "@/types";
+import config from "@/config/config.json";
 
 interface PageData {
   notFound?: boolean;
@@ -9,28 +11,20 @@ interface PageData {
 }
 
 const CallToAction = ({ data }: { data: PageData }) => {
+  const { contact_form_action } = config.params;
   return (
     <>
       {data.frontmatter.enable && (
         <section className="mb-28">
           <div className="container">
-            <div className="rounded-xl bg-theme-light px-4 py-16 dark:bg-darkmode-theme-light xl:p-20">
-              <div className="row items-center justify-between">
-                <div className="mb-10 md:col-5 lg:col-4 md:order-2 md:mb-0">
-                  <ImageFallback
-                    className="w-full"
-                    src={data.frontmatter.image}
-                    width={392}
-                    height={390}
-                    alt="cta-image"
-                  />
-                </div>
-                <div className="md:col-7 md:order-1">
+            <div className="rounded-xl bg-theme-light px-3 py-10 dark:bg-darkmode-theme-light xl:p-10">
+              <div className="row ">
+                <div className=" max-w-md xl:inset-x-0 xl:top-0   ">
                   <h2
                     dangerouslySetInnerHTML={markdownify(
                       data.frontmatter.title,
                     )}
-                    className="mb-2"
+                    className="mb-2 "
                   />
                   <p
                     dangerouslySetInnerHTML={markdownify(
@@ -38,14 +32,9 @@ const CallToAction = ({ data }: { data: PageData }) => {
                     )}
                     className="mb-6"
                   />
-                  {data.frontmatter.button.enable && (
-                    <a
-                      className="btn btn-primary"
-                      href={data.frontmatter.button.link}
-                    >
-                      {data.frontmatter.button.label}
-                    </a>
-                  )}
+                </div>
+                <div className="lg:max-w-xl xl:max-w-3xl shadow bg-white dark:bg-darkmode-theme-dark px-4 py-5 rounded-xl">
+                  <ContactForm contactFormAction={contact_form_action} />
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@ import Social from "@/components/Social";
 import ImageFallback from "@/helpers/ImageFallback";
 import { markdownify } from "@/lib/utils/textConverter";
 import { Testimonial } from "@/types";
-import { FaCheck } from "react-icons/fa6";
+import { GoDotFill } from "react-icons/go";
 import "swiper/css";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -101,7 +101,7 @@ const Developers = ({ data }: { data: PageData }) => {
                                 className="relative mt-6 mb-4 pl-6"
                                 key={bullet}
                               >
-                                <FaCheck
+                                <GoDotFill
                                   className={"absolute left-0  top-1.5"}
                                 />
                                 <span
