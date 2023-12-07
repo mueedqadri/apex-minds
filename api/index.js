@@ -1,8 +1,11 @@
+const { StatusCodes } = require("http-status-codes");
 const app = require("express")();
+
 const Mailgun = require("mailgun.js");
 const formData = require("form-data");
 
 const mailgun = new Mailgun(formData);
+app.use(express.json());
 
 app.post("/api/send-mail", async (req, res) => {
   try {
