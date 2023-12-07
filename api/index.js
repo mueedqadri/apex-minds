@@ -2,6 +2,9 @@ const { StatusCodes } = require("http-status-codes");
 const express = require("express");
 const app = express();
 
+const cors = require("cors");
+app.use(cors());
+
 const Mailgun = require("mailgun.js");
 const formData = require("form-data");
 

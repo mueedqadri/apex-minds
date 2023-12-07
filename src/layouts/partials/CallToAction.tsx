@@ -1,5 +1,4 @@
 import ContactForm from "@/components/ContactForm";
-import ImageFallback from "@/helpers/ImageFallback";
 import { markdownify } from "@/lib/utils/textConverter";
 import { Call_to_action } from "@/types";
 import config from "@/config/config.json";
@@ -18,8 +17,8 @@ const CallToAction = ({ data }: { data: PageData }) => {
         <section className="mb-28">
           <div className="container">
             <div className="rounded-xl bg-theme-light px-3 py-10 dark:bg-darkmode-theme-light xl:p-10">
-              <div className="row ">
-                <div className=" max-w-md xl:inset-x-0 xl:top-0   ">
+              <div className="row items-center">
+                <div className=" max-w-md    ">
                   <h2
                     dangerouslySetInnerHTML={markdownify(
                       data.frontmatter.title,

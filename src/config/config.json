@@ -23,7 +23,7 @@
   },
 
   "params": {
-    "contact_form_action": "#"
+    "contact_form_action": "https://apex-minds-weld.vercel.app/api/send-mail"
   },
 
   "navigation_button": {

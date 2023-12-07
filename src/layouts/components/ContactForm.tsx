@@ -1,10 +1,36 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 interface ContactFormProps {
   contactFormAction: string;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ contactFormAction }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    setIsLoading(true);
+
+    const formData = {
+      text: "Your message here",
+    };
+
+    try {
+      const response = await fetch(contactFormAction, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: formData }),
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="p-4">
       <form action={contactFormAction} method="POST">
@@ -32,8 +58,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ contactFormAction }) => {
             rows={2}
           ></textarea>
         </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <button type="submit" className="btn btn-primary" disabled={isLoading}>
+          {isLoading ? "Loading..." : "Submit"}
         </button>
       </form>
     </div>
