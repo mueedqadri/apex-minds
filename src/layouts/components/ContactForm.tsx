@@ -5,11 +5,9 @@ interface ContactFormProps {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ contactFormAction }) => {
-  const contact_form_action = "/your-form-action-url";
-
   return (
     <div className="p-4">
-      <form action={contact_form_action} method="POST">
+      <form action={contactFormAction} method="POST">
         <div className="mb-6">
           <label htmlFor="name" className="form-label">
             Full Name <span className="text-red-500">*</span>

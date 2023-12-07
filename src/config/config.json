@@ -23,8 +23,7 @@
   },
 
   "params": {
-    "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
+    "contact_form_action": "#"
   },
 
   "navigation_button": {
