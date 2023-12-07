@@ -5,8 +5,6 @@ import config from "@/config/config.json";
 import social from "@/config/social.json";
 
 const Footer = () => {
-  const { copyright } = config.params;
-
   return (
     <footer className="bg-theme-light dark:bg-darkmode-theme-light">
       <div className="container">
