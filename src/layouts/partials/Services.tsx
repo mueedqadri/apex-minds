@@ -71,7 +71,10 @@ const Services: React.FC = () => {
             </motion.div>
             <div className="mt-5 w-full md:w-6/12 ml-auto">
               {services.list.map((item, index) => (
-                <div className="p-6 bg-[#222222] rounded-xl  h-70 flex justify-center  flex-col md:p-20 mb-10 dark:bg-[#f9f9f9]">
+                <div
+                  key={index}
+                  className="p-6 bg-[#222222] rounded-xl  h-70 flex justify-center  flex-col md:p-20 mb-10 dark:bg-[#f9f9f9]"
+                >
                   <h1 className="text-4xl mb-5 text-[#fff] dark:text-dark">
                     {item.title}
                   </h1>
