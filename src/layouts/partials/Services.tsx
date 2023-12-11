@@ -62,16 +62,16 @@ const Services: React.FC = () => {
           <div className="relative">
             <motion.div
               style={{ y: y }}
-              className={`absolute w-full md:w-6/12 `}
+              className={`md:absolute w-full md:w-6/12 `}
             >
-              <div className=" p-2">
+              <div className="p-2">
                 <h1 className={`mb-10 text-5xl`}>{services.title}</h1>
                 <p className=" md:mr-10 text-xl">{services.subtitle}</p>
               </div>
             </motion.div>
             <div className="mt-5 w-full md:w-6/12 ml-auto">
               {services.list.map((item, index) => (
-                <div className="bg-[#222222] rounded-xl  h-70 flex justify-center  flex-col md:p-20 mb-10 dark:bg-[#f9f9f9]">
+                <div className="p-6 bg-[#222222] rounded-xl  h-70 flex justify-center  flex-col md:p-20 mb-10 dark:bg-[#f9f9f9]">
                   <h1 className="text-4xl mb-5 text-[#fff] dark:text-dark">
                     {item.title}
                   </h1>
