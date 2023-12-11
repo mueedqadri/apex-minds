@@ -14,7 +14,7 @@ const CallToAction = ({ data }: { data: PageData }) => {
   return (
     <>
       {data.frontmatter.enable && (
-        <section className="mb-28">
+        <section id="contact-form" className="mb-28">
           <div className="container">
             <div className="rounded-xl bg-theme-light px-3 py-10 dark:bg-darkmode-theme-light xl:p-10">
               <div className="row items-center">

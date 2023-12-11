@@ -1,7 +1,7 @@
 ---
 enable: true
 title: "Meet our team"
-description: "Over the past few years, the team members have collectively worked on large-scale projects across various technologies."
+description: "Experience the **apex** of innovation with our team of tech experts."
 
 # Developers
 Developers:
@@ -50,7 +50,7 @@ Developers:
     content:
       - Data Scientist and Machine Learning Engineer specializing in **Computer Vision and NLP**.
       - Led a COVID detection project, securing **$12.6M funding** and an **S&P 500 acquisition**.
-      - Expert in MLOps and cloud technologies like** AWS, Azure, and GCP**.
+      - Expert in MLOps and cloud technologies like **AWS, Azure, and GCP**.
       - Developed the **Langtest** library for NLP model testing and contributed to multiple ML and deep learning projects.
 
   - name: "Mir Rashid"

@@ -30,7 +30,7 @@ const Home = () => {
     <>
       <SeoMeta />
       <Hero features={features} />
-      {/* <Services /> */}
+      <Services />
       <NumberElements numbers={numbers} />
       <Companies companies={companies} />
       <Skills skills={skills} />

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import ImageFallback from "@/helpers/ImageFallback";
 
@@ -18,6 +19,12 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ features }) => {
+  const handleButtonClick: React.MouseEventHandler<HTMLButtonElement> = () => {
+    const element = document.getElementById("contact-form");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
     <section className={`section-sm bg-gradient`}>
       <div className="container">
@@ -47,9 +54,13 @@ const Hero: React.FC<HeroProps> = ({ features }) => {
                 </li>
               ))}
             </ul>
-            <a className="btn btn-primary mt-5" href={features.button.link}>
+            <button
+              onClick={handleButtonClick}
+              type="button"
+              className="btn btn-primary"
+            >
               {features.button.label}
-            </a>
+            </button>
           </div>
         </div>
       </div>
