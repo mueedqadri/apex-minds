@@ -11,6 +11,7 @@ import Skills from "@/components/Skills";
 
 const Home = () => {
   const homepage = getListPage("homepage/_index.md");
+  const services = getListPage("services/_index.md");
   const developers = getListPage("sections/developers.md");
   const callToAction = getListPage("sections/call-to-action.md");
   const { frontmatter } = homepage;
@@ -30,7 +31,7 @@ const Home = () => {
     <>
       <SeoMeta />
       <Hero features={features} />
-      <Services />
+      <Services data={services} />
       <NumberElements numbers={numbers} />
       <Companies companies={companies} />
       <Skills skills={skills} />

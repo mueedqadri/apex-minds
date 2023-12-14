@@ -49,9 +49,9 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
   }
 
   return (
-    <animated.div ref={ref}>
+    <animated.span ref={ref}>
       {props.val.interpolate((val) => preSymbol + Math.floor(val) + postSymbol)}
-    </animated.div>
+    </animated.span>
   );
 };
 

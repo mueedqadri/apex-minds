@@ -4,9 +4,11 @@ import Logo from "@/components/Logo";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
+import { ActiveSectionContext } from "@/context/active-section-context";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { IoSearch } from "react-icons/io5/index.js";
 
 //  child navigation link interface
@@ -24,6 +26,8 @@ export interface INavigationLink {
 }
 
 const Header = () => {
+  const context = useContext(ActiveSectionContext);
+
   // distructuring the main menu from menu object
   const { main }: { main: INavigationLink[] } = menu;
   const { navigation_button, settings } = config;
@@ -33,17 +37,24 @@ const Header = () => {
   // scroll to top on route change
   useEffect(() => {
     window.scroll(0, 0);
+    console.log("pathname", pathname);
   }, [pathname]);
 
   return (
     <header
-      className={`header z-30 ${settings.sticky_header && "sticky top-0"}`}
+      className={`${
+        context?.isSectionVisible ? "header-hidden" : "header"
+      } z-30 ${settings.sticky_header && "sticky top-0"}`}
     >
       <nav className="navbar container">
         {/* logo */}
-        <div className="order-0">
+        <motion.div
+          className="order-0"
+          initial="hidden"
+          animate={{ opacity: context?.isSectionVisible ? 0 : 1 }}
+        >
           <Logo />
-        </div>
+        </motion.div>
         {/* navbar toggler */}
         {settings.navbar && (
           <div>
