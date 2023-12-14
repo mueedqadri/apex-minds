@@ -8,7 +8,7 @@ import { ActiveSectionContext } from "@/context/active-section-context";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5/index.js";
 
 //  child navigation link interface
@@ -37,9 +37,13 @@ const Header = () => {
   // scroll to top on route change
   useEffect(() => {
     window.scroll(0, 0);
-    console.log("pathname", pathname);
   }, [pathname]);
+  const [isPageLoaded, setPageLoaded] = useState(false);
 
+  useEffect(() => {
+    // Assuming the page is loaded when this component mounts
+    setPageLoaded(true);
+  }, []);
   return (
     <header
       className={`${
@@ -48,12 +52,13 @@ const Header = () => {
     >
       <nav className="navbar container">
         {/* logo */}
+
         <motion.div
           className="order-0"
           initial="hidden"
           animate={{ opacity: context?.isSectionVisible ? 0 : 1 }}
         >
-          <Logo />
+          {isPageLoaded && context?.isSectionVisible && <Logo />}
         </motion.div>
         {/* navbar toggler */}
         {settings.navbar && (
