@@ -2,8 +2,13 @@
   @apply inline-block rounded border border-transparent px-5 py-2 font-semibold capitalize transition;
 }
 
+
 .btn-sm {
   @apply rounded-sm px-4 py-1.5 text-sm;
+}
+
+.btn-category {
+  @apply rounded-lg px-4 py-1.5 text-sm m-2;
 }
 
 .btn-primary {
@@ -11,5 +16,13 @@
 }
 
 .btn-outline-primary {
-  @apply border-dark bg-transparent text-dark hover:bg-dark hover:text-white   dark:hover:bg-white dark:hover:text-dark;
+  @apply border-dark dark:border-light bg-transparent text-dark dark:text-white hover:bg-[#9279f0] hover:text-white    dark:hover:text-dark;
+}
+
+.btn-outline-category {
+  @apply border-2 border-primary  bg-transparent text-primary  dark:text-[#9279f0] hover:bg-[#9279f0] hover:text-white    dark:hover:text-dark;
+}
+
+.btn-category-selected {
+  @apply bg-primary  text-white dark:text-white  border-primary;
 }

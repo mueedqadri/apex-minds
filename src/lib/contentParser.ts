@@ -1,7 +1,12 @@
+import { Post } from "@/types";
 import fs from "fs";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import path from "path";
+import { getAllTaxonomy, getTaxonomy } from "./taxonomyParser";
+import config from "@/config/config.json";
+
+const { blog_folder, pagination } = config.settings;
 
 const contentPath = "src/content";
 
@@ -30,6 +35,22 @@ export const getListPage = (filePath: string) => {
   return {
     frontmatter: parseFrontmatter(frontmatter),
     content,
+  };
+};
+
+export const getPostData = () => {
+  const postIndex: Post = getListPage(`${blog_folder}/_index.md`);
+  const posts: Post[] = getSinglePage(blog_folder);
+  const allCategories = getAllTaxonomy(blog_folder, "categories");
+  const categories = getTaxonomy(blog_folder, "categories");
+  const tags = getTaxonomy(blog_folder, "tags");
+
+  return {
+    postIndex,
+    posts,
+    allCategories,
+    categories,
+    tags,
   };
 };
 

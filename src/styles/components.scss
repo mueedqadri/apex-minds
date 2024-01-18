@@ -193,3 +193,17 @@
   @apply prose-tr:border-border prose-tr:dark:border-darkmode-border;
   @apply prose-td:relative prose-td:z-10 prose-td:px-3 prose-td:py-[18px] prose-td:dark:text-darkmode-text;
 }
+
+// blog image 
+
+.blog-image-container {
+background-size: cover;
+  background-position: center;
+  height: 500px;
+  border-radius: 10px; // Add rounded corners
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; // Align inner elements at the bottom
+}
+
+

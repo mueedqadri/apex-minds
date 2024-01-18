@@ -1,21 +1,13 @@
 import BlogCard from "@/components/BlogCard";
+import BlogImage from "@/components/BlogImage";
 import Disqus from "@/components/Disqus";
 import Share from "@/components/Share";
 import config from "@/config/config.json";
-import ImageFallback from "@/helpers/ImageFallback";
 import MDXContent from "@/helpers/MDXContent";
 import { getSinglePage } from "@/lib/contentParser";
-import dateFormat from "@/lib/utils/dateFormat";
 import similerItems from "@/lib/utils/similarItems";
-import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
 import SeoMeta from "@/partials/SeoMeta";
 import { Post } from "@/types";
-import Link from "next/link";
-import {
-  FaRegClock,
-  FaRegFolder,
-  FaRegUserCircle,
-} from "react-icons/fa/index.js";
 
 const { blog_folder } = config.settings;
 
@@ -62,52 +54,19 @@ const PostSingle = ({ params }: { params: { single: string } }) => {
         <div className="container">
           <div className="row justify-center">
             <article className="lg:col-10">
-              {image && (
-                <div className="mb-10">
-                  <ImageFallback
-                    src={image}
-                    height={500}
-                    width={1200}
-                    alt={title}
-                    className="w-full rounded"
-                  />
-                </div>
-              )}
-              <h1
-                dangerouslySetInnerHTML={markdownify(title)}
-                className="h2 mb-4"
+              <BlogImage
+                image={image}
+                title={title}
+                date={date}
+                author={author}
+                categories={categories}
               />
-              <ul className="mb-4">
-                <li className="mr-4 inline-block">
-                  <a href={`/authors/${slugify(author)}`}>
-                    <FaRegUserCircle className={"-mt-1 mr-2 inline-block"} />
-                    {humanize(author)}
-                  </a>
-                </li>
-                <li className="mr-4 inline-block">
-                  <FaRegFolder className={"-mt-1 mr-2 inline-block"} />
-                  {categories?.map((category: string, index: number) => (
-                    <Link
-                      key={category}
-                      href={`/categories/${slugify(category)}`}
-                    >
-                      {humanize(category)}
-                      {index !== categories.length - 1 && ", "}
-                    </Link>
-                  ))}
-                </li>
-                {date && (
-                  <li className="mr-4 inline-block">
-                    <FaRegClock className="-mt-1 mr-2 inline-block" />
-                    {dateFormat(date)}
-                  </li>
-                )}
-              </ul>
+
               <div className="content mb-10">
                 <MDXContent content={content} />
               </div>
               <div className="row items-start justify-between">
-                <div className="mb-10 flex items-center lg:col-5 lg:mb-0">
+                {/* <div className="mb-10 flex items-center lg:col-5 lg:mb-0">
                   <h5 className="mr-3">Tags :</h5>
                   <ul>
                     {tags?.map((tag: string) => (
@@ -121,7 +80,7 @@ const PostSingle = ({ params }: { params: { single: string } }) => {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </div> */}
                 <div className="flex items-center lg:col-4">
                   <h5 className="mr-3">Share :</h5>
                   <Share

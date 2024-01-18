@@ -38,11 +38,12 @@ const Header = () => {
   useEffect(() => {
     window.scroll(0, 0);
   }, [pathname]);
-  const [isPageLoaded, setPageLoaded] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
-    // Assuming the page is loaded when this component mounts
-    setPageLoaded(true);
+    console.log(context?.isSectionVisible);
+    // Setting initial load to false after the component mounts
+    setIsInitialLoad(false);
   }, []);
   return (
     <header
@@ -55,43 +56,41 @@ const Header = () => {
 
         <motion.div
           className="order-0"
-          initial="hidden"
-          animate={{ opacity: context?.isSectionVisible ? 0 : 1 }}
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: isInitialLoad ? 0 : context?.isSectionVisible ? 0 : 1,
+          }}
         >
-          {isPageLoaded && context?.isSectionVisible && <Logo />}
+          <Logo />
         </motion.div>
         {/* navbar toggler */}
-        {settings.navbar && (
-          <div>
-            <input id="nav-toggle" type="checkbox" className="hidden" />
-            <label
-              htmlFor="nav-toggle"
-              className="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1"
-            >
-              <svg
-                id="show-button"
-                className="h-6 fill-current block"
-                viewBox="0 0 20 20"
-              >
-                <title>Menu Open</title>
-                <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
-              </svg>
-              <svg
-                id="hide-button"
-                className="h-6 fill-current hidden"
-                viewBox="0 0 20 20"
-              >
-                <title>Menu Close</title>
-                <polygon
-                  points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
-                  transform="rotate(45 10 10)"
-                ></polygon>
-              </svg>
-            </label>
-          </div>
-        )}
+        {/* <input id="nav-toggle" type="checkbox" className="hidden" />
+        <label
+          htmlFor="nav-toggle"
+          className="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1"
+        >
+          <svg
+            id="show-button"
+            className="h-6 fill-current block"
+            viewBox="0 0 20 20"
+          >
+            <title>Menu Open</title>
+            <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+          </svg>
+          <svg
+            id="hide-button"
+            className="h-6 fill-current hidden"
+            viewBox="0 0 20 20"
+          >
+            <title>Menu Close</title>
+            <polygon
+              points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+              transform="rotate(45 10 10)"
+            ></polygon>
+          </svg>
+        </label> */}
         {/* /navbar toggler */}
-        {settings.navbar && (
+        {/* {settings.navbar && (
           <ul
             id="nav-menu"
             className="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8"
@@ -161,7 +160,7 @@ const Header = () => {
               </li>
             )}
           </ul>
-        )}
+        )} */}
         <div className="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
           {settings.search && (
             <Link

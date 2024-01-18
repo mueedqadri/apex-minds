@@ -1,4 +1,4 @@
-import { getListPage } from "@/lib/contentParser";
+import { getListPage, getPostData } from "@/lib/contentParser";
 import CallToAction from "@/partials/CallToAction";
 import SeoMeta from "@/partials/SeoMeta";
 import Developers from "@/partials/Developers";
@@ -8,12 +8,16 @@ import Hero from "@/components/Hero";
 import Companies from "@/layouts/partials/Companies";
 import Services from "@/partials/Services";
 import Skills from "@/components/Skills";
+import BlogSlider from "@/components/BlogSlider";
+import { useActiveSectionContext } from "@/context/active-section-context";
 
 const Home = () => {
   const homepage = getListPage("homepage/_index.md");
   const services = getListPage("services/_index.md");
   const developers = getListPage("sections/developers.md");
   const callToAction = getListPage("sections/call-to-action.md");
+
+  const postData = getPostData();
   const { frontmatter } = homepage;
   const {
     features,
@@ -29,14 +33,17 @@ const Home = () => {
 
   return (
     <>
-      <SeoMeta />
-      <Hero features={features} />
-      <Services data={services} />
-      <NumberElements numbers={numbers} />
-      <Companies companies={companies} />
-      <Skills skills={skills} />
-      <Developers data={developers} />
-      <CallToAction data={callToAction} />
+      <div>
+        <SeoMeta />
+        <Hero features={features} />
+        <Services data={services} />
+        <NumberElements numbers={numbers} />
+        <Companies companies={companies} />
+        <Skills skills={skills} />
+        <Developers data={developers} />
+        <BlogSlider data={postData} />
+        <CallToAction data={callToAction} />
+      </div>
     </>
   );
 };

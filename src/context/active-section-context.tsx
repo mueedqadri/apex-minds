@@ -8,6 +8,8 @@ type ActiveSectionContextProviderProps = {
 };
 
 type ActiveSectionContextType = {
+  activeSection: SectionName;
+  setActiveSection: React.Dispatch<React.SetStateAction<SectionName>>;
   isSectionVisible: boolean;
   setSectionVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -18,11 +20,17 @@ export const ActiveSectionContext =
 export default function ActiveSectionContextProvider({
   children,
 }: ActiveSectionContextProviderProps) {
-  const [isSectionVisible, setSectionVisible] = useState(false);
+  const [isSectionVisible, setSectionVisible] = useState(true);
+  const [activeSection, setActiveSection] = useState<SectionName>("Home");
 
   return (
     <ActiveSectionContext.Provider
-      value={{ isSectionVisible, setSectionVisible }}
+      value={{
+        activeSection,
+        setActiveSection,
+        isSectionVisible,
+        setSectionVisible,
+      }}
     >
       {children}
     </ActiveSectionContext.Provider>

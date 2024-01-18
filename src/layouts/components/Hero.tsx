@@ -8,10 +8,8 @@ import { useTheme } from "next-themes";
 
 import config from "@/config/config.json";
 import { motion, useTransform, useScroll } from "framer-motion";
-import {
-  ActiveSectionContext,
-  useActiveSectionContext,
-} from "@/context/active-section-context";
+import { useActiveSectionContext } from "@/context/active-section-context";
+import { usePathname } from "next/navigation";
 
 interface HeroProps {
   features: {
@@ -27,10 +25,15 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ features }) => {
-  const context = useContext(ActiveSectionContext);
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const loadTimer = setTimeout(() => {
+      setMounted(true);
+    }, 50);
+
+    return () => clearTimeout(loadTimer);
+  }, []);
   const ref = useRef<HTMLDivElement>(null);
 
   const { logo, logo_darkmode }: { logo: string; logo_darkmode: string } =
@@ -54,14 +57,23 @@ const Hero: React.FC<HeroProps> = ({ features }) => {
   });
 
   const scale = useTransform(scrollYProgress, [0.5, 1], [1, 0.1]);
+  const motionStyle = mounted
+    ? { scale, transformOrigin: "left" }
+    : { scale: 1 };
 
-  const { setSectionVisible } = useActiveSectionContext();
+  const { setSectionVisible, setActiveSection } = useActiveSectionContext();
   const sectionRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setActiveSection("Home");
+  }, [setActiveSection]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log(entry.isIntersecting);
           setSectionVisible(entry.isIntersecting);
         });
       },
@@ -71,7 +83,7 @@ const Hero: React.FC<HeroProps> = ({ features }) => {
     observer.observe(sectionRef?.current as HTMLDivElement);
 
     return () => observer.disconnect();
-  }, [setSectionVisible]);
+  }, [pathname, setSectionVisible]);
 
   return (
     <section className={`section-sm bg-gradient`}>
@@ -80,9 +92,10 @@ const Hero: React.FC<HeroProps> = ({ features }) => {
       <div ref={sectionRef} className="container">
         <div className="row items-center justify-between">
           <motion.div
-            style={{ scale, transformOrigin: "left" }}
+            style={motionStyle}
             ref={ref}
             className={`mb-7 mb:md-0 mt-20 md:col-5 `}
+            initial={{ scale: 1 }}
           >
             <ImageFallback
               src={resolvedLogo}

@@ -1,3 +1,5 @@
+import menu from "@/config/menu.json";
+
 export type RegularPage = {
   frontmatter: {
     title: string;
@@ -27,7 +29,15 @@ export type Post = {
   content?: string;
 };
 
-export type SectionName = (typeof links)[number]["name"];
+export type PostSlider = {
+  postIndex: Post;
+  posts: Post[];
+  allCategories: string[];
+  categories: string[];
+  tags: string[];
+};
+
+export type SectionName = (typeof menu.main)[number]["name"];
 
 export interface IItem {
   name: string;
